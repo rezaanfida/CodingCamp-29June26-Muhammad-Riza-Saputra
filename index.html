@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do Life Dashboard</title>
+
+    <!-- Google Fonts: Inter (primary) + Poppins (fallback) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Storage unavailability warning (injected by app.js when needed) -->
+    <div id="storage-warning" role="alert" aria-live="assertive" hidden></div>
+
+    <main class="dashboard" aria-label="Life Dashboard">
+      <!-- Widget 1: Greeting & Clock -->
+      <section
+        id="clock-widget"
+        class="widget widget--clock"
+        aria-label="Greeting and Clock"
+      >
+        <div class="widget__inner">
+          <p id="clock-greeting" class="clock__greeting" aria-live="polite"></p>
+          <time id="clock-time" class="clock__time" aria-label="Current time"></time>
+          <p id="clock-date" class="clock__date" aria-label="Current date"></p>
+        </div>
+      </section>
+
+      <!-- Widget 2: Focus Timer -->
+      <section
+        id="timer-widget"
+        class="widget widget--timer"
+        aria-label="Focus Timer"
+      >
+        <div class="widget__inner">
+          <h2 class="widget__title">Focus Timer</h2>
+          <div
+            id="timer-display"
+            class="timer__display"
+            role="timer"
+            aria-label="Remaining time"
+            aria-live="off"
+          >
+            25:00
+          </div>
+          <div class="timer__controls" role="group" aria-label="Timer controls">
+            <button
+              id="timer-start"
+              class="btn btn--primary"
+              aria-label="Start timer"
+            >
+              Start
+            </button>
+            <button
+              id="timer-stop"
+              class="btn btn--secondary"
+              aria-label="Stop timer"
+              disabled
+            >
+              Stop
+            </button>
+            <button
+              id="timer-reset"
+              class="btn btn--ghost"
+              aria-label="Reset timer"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Widget 3: To-Do List -->
+      <section
+        id="todo-widget"
+        class="widget widget--todo"
+        aria-label="To-Do List"
+      >
+        <div class="widget__inner">
+          <h2 class="widget__title">To-Do List</h2>
+          <div class="todo__input-group">
+            <label for="todo-input" class="sr-only">New task title</label>
+            <input
+              id="todo-input"
+              class="input"
+              type="text"
+              placeholder="Add a new task…"
+              maxlength="200"
+              aria-label="New task title"
+              aria-describedby="todo-error"
+            />
+            <button id="todo-add" class="btn btn--primary" aria-label="Add task">
+              Add
+            </button>
+          </div>
+          <p
+            id="todo-error"
+            class="validation-message"
+            role="alert"
+            aria-live="assertive"
+            hidden
+          ></p>
+          <p id="todo-storage-notice" class="storage-notice" hidden></p>
+          <ul
+            id="todo-list"
+            class="todo__list"
+            aria-label="Task list"
+            aria-live="polite"
+          ></ul>
+        </div>
+      </section>
+
+      <!-- Widget 4: Quick Links -->
+      <section
+        id="quick-links-widget"
+        class="widget widget--links"
+        aria-label="Quick Links"
+      >
+        <div class="widget__inner">
+          <h2 class="widget__title">Quick Links</h2>
+          <button
+            id="links-add-btn"
+            class="btn btn--primary"
+            aria-label="Add new link"
+            aria-expanded="false"
+            aria-controls="links-form"
+          >
+            + Add Link
+          </button>
+          <form
+            id="links-form"
+            class="links__form"
+            aria-label="Add link form"
+            hidden
+            novalidate
+          >
+            <div class="form-group">
+              <label for="links-name-input">Display Name</label>
+              <input
+                id="links-name-input"
+                class="input"
+                type="text"
+                placeholder="e.g. GitHub"
+                maxlength="100"
+                aria-describedby="links-name-error"
+              />
+              <p
+                id="links-name-error"
+                class="validation-message"
+                role="alert"
+                aria-live="assertive"
+                hidden
+              ></p>
+            </div>
+            <div class="form-group">
+              <label for="links-url-input">URL</label>
+              <input
+                id="links-url-input"
+                class="input"
+                type="url"
+                placeholder="https://example.com"
+                aria-describedby="links-url-error"
+              />
+              <p
+                id="links-url-error"
+                class="validation-message"
+                role="alert"
+                aria-live="assertive"
+                hidden
+              ></p>
+            </div>
+            <div class="form-group form-group--actions">
+              <button type="submit" class="btn btn--primary">Save</button>
+              <button type="button" id="links-cancel-btn" class="btn btn--ghost">
+                Cancel
+              </button>
+            </div>
+          </form>
+          <p id="links-storage-notice" class="storage-notice" hidden></p>
+          <ul
+            id="links-list"
+            class="links__list"
+            aria-label="Quick links list"
+            aria-live="polite"
+          ></ul>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
